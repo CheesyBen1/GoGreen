@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/.school/MobileApps/Mobile Application Assignment/Mobile Application Assignment/Go Green App Assignment/app/src/main/res/layout/activity_activities_main_page.xml" value="0.23020833333333332" />
+        <entry key="..\:/.school/MobileApps/Mobile Application Assignment/Mobile Application Assignment/Go Green App Assignment/app/src/main/res/layout/activity_donation_main_page.xml" value="0.23020833333333332" />
+        <entry key="..\:/.school/MobileApps/Mobile Application Assignment/Mobile Application Assignment/Go Green App Assignment/app/src/main/res/layout/activity_log_in_page.xml" value="0.23020833333333332" />
+        <entry key="..\:/.school/MobileApps/Mobile Application Assignment/Mobile Application Assignment/Go Green App Assignment/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/.school/MobileApps/Mobile Application Assignment/Mobile Application Assignment/Go Green App Assignment/app/src/main/res/layout/activity_news_feed_main_page.xml" value="0.23020833333333332" />
+        <entry key="..\:/.school/MobileApps/Mobile Application Assignment/Mobile Application Assignment/Go Green App Assignment/app/src/main/res/layout/activity_sign_up_page.xml" value="0.23020833333333332" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>
