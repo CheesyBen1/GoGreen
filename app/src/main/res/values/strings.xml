@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">GoGreen</string>
+    <string name="loginbuttontext">Login</string>
+    <string name="registerbuttontext">Register</string>
+    <string name="username_textbox">Username</string>
+    <string name="password_textbox">Password</string>
 </resources>
