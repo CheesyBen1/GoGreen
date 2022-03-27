@@ -20,7 +20,8 @@
             android:exported="false" />
         <activity
             android:name=".SignUpPage"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".LogInPage"/>
         <activity
             android:name=".LogInPage"
             android:exported="false"
