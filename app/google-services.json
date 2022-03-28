@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "245031641317",
+    "project_id": "assignmentauth-1112b",
+    "storage_bucket": "assignmentauth-1112b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:245031641317:android:89ffd1c325b292280a340c",
+        "android_client_info": {
+          "package_name": "com.example.gogreen"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "245031641317-v46tu8psp6mepjsckffbep0p55kv560c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCy2hRJvm_SdU5XWdtNZEo7EL2dW6BAzdk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "245031641317-v46tu8psp6mepjsckffbep0p55kv560c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
