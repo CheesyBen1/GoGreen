@@ -5,9 +5,11 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.util.Patterns
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import com.example.gogreen.models.userLogged
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
@@ -36,13 +38,31 @@ class LogInPage : AppCompatActivity() {
             startActivity(intent)
         }
 
+        val textEmail: EditText = findViewById(R.id.textLoginEmail)
+        val textPass: EditText = findViewById(R.id.textLoginPass)
+
         val btnLogin: Button = findViewById(R.id.loginBtn)
 
         btnLogin.setOnClickListener(){
+
             email = findViewById<EditText>(R.id.textLoginEmail).text.toString()
             password = findViewById<EditText>(R.id.textLoginPass).text.toString()
 
-            signIn(email, password)
+
+            if(email.isEmpty()){
+                textEmail.error = "Email is required!"
+                textEmail.requestFocus()
+            }
+            else if(password.isEmpty()){
+                textPass.error = "Password is required!"
+                textPass.requestFocus()
+            }
+            else
+            {
+                signIn(email, password)
+            }
+
+
         }
 
 
@@ -63,21 +83,25 @@ class LogInPage : AppCompatActivity() {
                 } else {
                     // If sign in fails, display a message to the user.
                     Log.w(TAG, "signInWithEmail:failure", task.exception)
-                    Toast.makeText(baseContext, "Authentication failed.",
+                    Toast.makeText(baseContext, "Failed to Login!",
                         Toast.LENGTH_SHORT).show()
                     //updateUI(null)
+
                 }
             }
         // [END sign_in_with_email]
     }
 
     private fun updateUI(user: FirebaseUser?) {
-        val i = Intent(this, ActivitiesMainPage::class.java)
+        val i = Intent(this, main::class.java)
         if (user != null) {
             i.putExtra("email", user.email)
         }
+        userLogged.currentUser = user;
         startActivity(i)
     }
+
+
 
     public override fun onStart() {
         super.onStart()
@@ -105,5 +129,9 @@ class LogInPage : AppCompatActivity() {
 
         savedInstanceState.putString("email", email)
         savedInstanceState.putString("password", password)
+    }
+
+    override fun onBackPressed() {
+
     }
 }

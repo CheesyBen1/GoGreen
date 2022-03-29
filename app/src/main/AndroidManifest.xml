@@ -10,22 +10,22 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GoGreen">
         <activity
-            android:name=".ActivitiesMainPage"
-            android:exported="false" />
+            android:name=".profile"
+            android:exported="false"
+            android:parentActivityName=".main"/>
         <activity
-            android:name=".DonationMainPage"
-            android:exported="false" />
-        <activity
-            android:name=".NewsFeedMainPage"
-            android:exported="false" />
+            android:name=".main"
+            android:exported="false"
+            android:label="@string/title_activity_main"
+            android:theme="@style/Theme.GoGreen.NoActionBar" />
         <activity
             android:name=".SignUpPage"
             android:exported="false"
-            android:parentActivityName=".LogInPage"/>
+            android:parentActivityName=".LogInPage" />
         <activity
             android:name=".LogInPage"
             android:exported="false"
-            android:parentActivityName=".MainActivity"/>
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".MainActivity"
             android:exported="true">

@@ -160,4 +160,8 @@ class SignUpPage : AppCompatActivity() {
         savedInstanceState.putString("email", email)
         savedInstanceState.putString("password", password)
     }
+
+    override fun onBackPressed() {
+
+    }
 }
