@@ -11,6 +11,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.NonNull
 import com.example.gogreen.models.User
+import com.example.gogreen.models.donations
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
@@ -30,6 +31,7 @@ class SignUpPage : AppCompatActivity() {
     private var email: String = ""
     private var username: String = ""
     private var password: String = ""
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

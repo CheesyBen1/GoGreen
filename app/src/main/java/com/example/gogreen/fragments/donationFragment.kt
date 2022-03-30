@@ -1,6 +1,8 @@
 package com.example.gogreen.fragments
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -8,10 +10,13 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import com.example.gogreen.R
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+import com.example.gogreen.models.donations
+import com.google.firebase.database.*
 import com.google.firebase.database.ktx.database
+import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
 
 // TODO: Rename parameter arguments, choose names that match
@@ -77,22 +82,47 @@ class donationFragment : Fragment() {
             }
     }
 
+    private val model: donations by viewModels()
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         val database = FirebaseDatabase.getInstance("https://assignmentauth-1112b-default-rtdb.asia-southeast1.firebasedatabase.app/")
         val myRef = database.getReference("message")
 
-        var btnTest: Button = requireView().findViewById(R.id.btnInsert)
-        btnTest.setOnClickListener(){
-           myRef.setValue("Hello World!").addOnSuccessListener {
-               val tvResult: TextView = requireView().findViewById(R.id.tvDono)
-               tvResult.text = "Success!"
-           }
-               .addOnFailureListener {
-                   val tvResult: TextView = requireView().findViewById(R.id.tvDono)
-                   tvResult.text = it.message
-               }
+        val tvDonoTotal: TextView = requireView().findViewById(R.id.tvDonoTotal)
+
+        val donationObserver = Observer<Double>{donoTotal ->
+            tvDonoTotal.setText(String.format("%.2f", donoTotal))
         }
+
+        model.donationTotal.observe(this,donationObserver)
+
+        val mainHandler = Handler(Looper.getMainLooper())
+
+        mainHandler.post(object: Runnable{
+            override fun run(){
+               updateDonoTotal()
+                mainHandler.postDelayed(this, 100)
+            }
+        })
+
+
+
     }
+
+    fun updateDonoTotal(){
+        val myRef = FirebaseDatabase.getInstance("https://assignmentauth-1112b-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("DonationDB")
+
+
+        myRef.child("DonationTotal").get()
+            .addOnSuccessListener {
+            model.donationTotal.value = it.getValue<Double>()
+            }
+
+
+    }
+
+
+
 }
