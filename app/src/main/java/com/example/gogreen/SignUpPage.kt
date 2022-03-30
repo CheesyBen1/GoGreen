@@ -24,9 +24,9 @@ import com.google.firebase.ktx.Firebase
 
 class SignUpPage : AppCompatActivity() {
 
+    private lateinit var auth: FirebaseAuth
     private lateinit var database: DatabaseReference
 
-    private lateinit var auth: FirebaseAuth
     private var email: String = ""
     private var username: String = ""
     private var password: String = ""
@@ -37,10 +37,11 @@ class SignUpPage : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         auth = Firebase.auth
-        database = Firebase.database.reference
+        database = FirebaseDatabase.getInstance("https://assignmentauth-1112b-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("UsersDB")
+
 
         email = findViewById<EditText>(R.id.textRegisterEmail).text.toString()
-        //username = findViewById<EditText>(R.id.textRegisterName).text.toString()
+        username = findViewById<EditText>(R.id.textRegisterName).text.toString()
         password = findViewById<EditText>(R.id.textRegisterPass).text.toString()
 
         val btnRegister: Button = findViewById(R.id.registerBtn)
@@ -48,7 +49,7 @@ class SignUpPage : AppCompatActivity() {
 
         btnRegister.setOnClickListener(){
             email = findViewById<EditText>(R.id.textRegisterEmail).text.toString()
-            //username = findViewById<EditText>(R.id.textRegisterName).text.toString()
+            username = findViewById<EditText>(R.id.textRegisterName).text.toString()
             password = findViewById<EditText>(R.id.textRegisterPass).text.toString()
 
             if(email.isEmpty()){
@@ -59,10 +60,10 @@ class SignUpPage : AppCompatActivity() {
                 findViewById<EditText>(R.id.textRegisterEmail).error = "Valid email is required!"
                 findViewById<EditText>(R.id.textRegisterEmail).requestFocus()
             }
-//            else if(username.isEmpty()){
-//                findViewById<EditText>(R.id.textRegisterName).error = "Username is required!"
-//                findViewById<EditText>(R.id.textRegisterName).requestFocus()
-//            }
+            else if(username.isEmpty()){
+                findViewById<EditText>(R.id.textRegisterName).error = "Username is required!"
+                findViewById<EditText>(R.id.textRegisterName).requestFocus()
+            }
             else if(password.isEmpty()){
                 findViewById<EditText>(R.id.textRegisterPass).error = "Password is required!"
                 findViewById<EditText>(R.id.textRegisterPass).requestFocus()
@@ -75,6 +76,11 @@ class SignUpPage : AppCompatActivity() {
                 createAccount(email, password)
             }
         }
+
+
+
+
+
     }
 
 
@@ -83,6 +89,7 @@ class SignUpPage : AppCompatActivity() {
 
         val currentUser = auth.currentUser
         if(currentUser != null){
+            auth.signOut()
             reload();
         }
 
@@ -97,7 +104,7 @@ class SignUpPage : AppCompatActivity() {
                     Toast.makeText(baseContext, "Registration successful.",Toast.LENGTH_SHORT).show()
                     val user = auth.currentUser
 
-                  // writeNewUser(user?.uid.toString(), username, email)
+                    writeNewUser(auth.currentUser?.uid.toString(), username, email)
 
 
                     //updateUI(user)
@@ -105,7 +112,7 @@ class SignUpPage : AppCompatActivity() {
                 } else {
                     // If sign in fails, display a message to the user.
                     Log.w(TAG, "createUserWithEmail:failure", task.exception)
-                    Toast.makeText(baseContext, "Registration failed.",
+                    Toast.makeText(baseContext, task.exception?.message,
                         Toast.LENGTH_SHORT).show()
                     //updateUI(null)
                 }
@@ -116,18 +123,9 @@ class SignUpPage : AppCompatActivity() {
 
 
     private fun writeNewUser(userId: String, username: String, email: String){
-        val user = User(username, email)
+        val newUser = User(userId, username, email)
 
-
-        database.child("users").child(userId).setValue(user).addOnCompleteListener(this){
-            task->
-            if(task.isSuccessful){
-                Toast.makeText(baseContext, "Pog.",Toast.LENGTH_SHORT).show()
-            }
-            else{
-                Toast.makeText(baseContext, "Not Pog.",Toast.LENGTH_SHORT).show()
-            }
-        }
+        database.child("userTable").child(newUser.userId).setValue(newUser)
 
     }
 

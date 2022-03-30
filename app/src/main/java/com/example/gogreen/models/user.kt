@@ -1,11 +1,11 @@
 package com.example.gogreen.models
 
-import com.google.firebase.database.IgnoreExtraProperties
 
-@IgnoreExtraProperties
-data class User(val username: String? = null, val email: String?= null) {
+data class User(
+    var userId: String,
+    var username: String,
+    var email: String)
 
 
 
 
-}

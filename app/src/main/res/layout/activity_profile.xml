@@ -7,7 +7,7 @@
     tools:context=".profile">
 
     <TextView
-        android:id="@+id/test"
+        android:id="@+id/tvLoggedName"
         android:layout_width="66dp"
         android:layout_height="0dp"
         android:text="profile"
@@ -19,8 +19,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/design_default_color_error"
-        android:text="Button"
+        android:text="Log out"
         android:textColor="@color/white"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/test" />
+        app:layout_constraintTop_toBottomOf="@+id/tvLoggedName" />
 </androidx.constraintlayout.widget.ConstraintLayout>
