@@ -7,20 +7,36 @@
     tools:context=".profile">
 
     <TextView
-        android:id="@+id/tvLoggedName"
-        android:layout_width="66dp"
-        android:layout_height="0dp"
-        android:text="profile"
+        android:id="@+id/tvProfile"
+        android:layout_width="fill_parent"
+        android:layout_height="42dp"
+        android:background="#3A7C3D"
+        android:gravity="center"
+        android:text="Profile"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/tvLoggedName"
+        android:layout_width="66dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="152dp"
+        android:text="profile"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvProfile" />
+
     <Button
         android:id="@+id/btnLogout"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/design_default_color_error"
         android:text="Log out"
         android:textColor="@color/white"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvLoggedName" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
