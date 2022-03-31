@@ -69,16 +69,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/textLoginPass"
-        app:layout_constraintTop_toBottomOf="@+id/textLoginPass" />
+        app:layout_constraintTop_toBottomOf="@+id/textLoginPass"
+        app:rippleColor="#78BCF1" />
 
     <Button
         android:id="@+id/toRegisterBtn"
         android:layout_width="110sp"
         android:layout_height="56dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="4dp"
         android:backgroundTint="#2196F3"
         android:text="@string/registerbuttontext"
         android:textColor="@color/white"
         app:layout_constraintStart_toEndOf="@+id/loginBtn"
-        app:layout_constraintTop_toTopOf="@+id/loginBtn" />
+        app:layout_constraintTop_toTopOf="@+id/loginBtn"
+        app:rippleColor="#78BCF1" />
 </androidx.constraintlayout.widget.ConstraintLayout>
