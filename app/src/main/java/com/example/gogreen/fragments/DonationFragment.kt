@@ -1,5 +1,6 @@
 package com.example.gogreen.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -12,8 +13,12 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import com.example.gogreen.DonationAmount
+import com.example.gogreen.Main
 import com.example.gogreen.R
+import com.example.gogreen.SignUpPage
 import com.example.gogreen.models.donations
+import com.example.gogreen.models.userLogged
 import com.google.firebase.database.*
 import com.google.firebase.database.ktx.database
 import com.google.firebase.database.ktx.getValue
@@ -93,7 +98,7 @@ class donationFragment : Fragment() {
         val tvDonoTotal: TextView = requireView().findViewById(R.id.tvDonoTotal)
 
         val donationObserver = Observer<Double>{donoTotal ->
-            tvDonoTotal.setText(String.format("%.2f", donoTotal))
+            tvDonoTotal.text = String.format("%.2f", donoTotal)
         }
 
         model.donationTotal.observe(this,donationObserver)
@@ -106,6 +111,13 @@ class donationFragment : Fragment() {
                 mainHandler.postDelayed(this, 100)
             }
         })
+
+        val btnDonate: Button = requireView().findViewById(R.id.btnDonate)
+
+        btnDonate.setOnClickListener(){
+            val intent: Intent = Intent(activity, DonationAmount::class.java)
+            startActivity(intent)
+        }
 
 
 

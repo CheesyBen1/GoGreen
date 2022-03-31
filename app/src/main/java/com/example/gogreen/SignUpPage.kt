@@ -125,7 +125,7 @@ class SignUpPage : AppCompatActivity() {
 
 
     private fun writeNewUser(userId: String, username: String, email: String){
-        val newUser = User(userId, username, email)
+        val newUser = User(userId, username, email, 0)
 
         database.child("userTable").child(newUser.userId).setValue(newUser)
 

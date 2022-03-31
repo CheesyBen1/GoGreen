@@ -5,7 +5,6 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.util.Patterns
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -13,7 +12,6 @@ import com.example.gogreen.models.userLogged
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
-import com.google.firebase.database.DatabaseReference
 import com.google.firebase.ktx.Firebase
 
 class LogInPage : AppCompatActivity() {
@@ -27,6 +25,8 @@ class LogInPage : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_log_in_page)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+        auth = Firebase.auth
 
         email = findViewById<EditText>(R.id.textLoginEmail).text.toString()
         password = findViewById<EditText>(R.id.textLoginPass).text.toString()
@@ -67,7 +67,7 @@ class LogInPage : AppCompatActivity() {
 
 
 
-        auth = Firebase.auth
+
 
     }
 
@@ -93,7 +93,7 @@ class LogInPage : AppCompatActivity() {
     }
 
     private fun updateUI(user: FirebaseUser?) {
-        val i = Intent(this, main::class.java)
+        val i = Intent(this, Main::class.java)
         if (user != null) {
             i.putExtra("email", user.email)
         }

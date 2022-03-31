@@ -12,28 +12,39 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GoGreen">
         <activity
-            android:name=".donationAmount"
-            android:exported="false" />
-        <activity
-            android:name=".profile"
+            android:name=".DonationHistory"
             android:exported="false"
-            android:parentActivityName=".main" />
+            android:parentActivityName=".Profile"/>
         <activity
-            android:name=".main"
+            android:name=".DonationAmount"
+            android:exported="false"
+            android:parentActivityName=".Main"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Profile"
+            android:exported="false"
+            android:parentActivityName=".Main"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Main"
             android:exported="false"
             android:label="@string/title_activity_main"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.GoGreen.NoActionBar" />
         <activity
             android:name=".SignUpPage"
             android:exported="false"
-            android:parentActivityName=".LogInPage" />
+            android:parentActivityName=".LogInPage"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".LogInPage"
             android:exported="false"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".MainActivity"
-            android:exported="true">
+            android:exported="true"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
