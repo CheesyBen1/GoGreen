@@ -5,7 +5,8 @@ data class User(
     var userId: String,
     var username: String,
     var email: String,
-    var donationCount: Int)
+    var donationCount: Int,
+    var joinedCount: Int)
 
 
 

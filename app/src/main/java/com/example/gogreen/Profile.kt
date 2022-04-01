@@ -3,14 +3,20 @@ package com.example.gogreen
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintSet
 import androidx.core.app.NavUtils
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.gogreen.fragments.adapters.ActivitiesRecycleAdapter
 import com.example.gogreen.models.DonoHistory
 import com.example.gogreen.models.userLogged
 import com.example.gogreen.models.userLogged.donationList
+import com.example.gogreen.models.userLogged.joinedDetail
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DatabaseReference
@@ -18,7 +24,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
 
-class Profile : AppCompatActivity() {
+class Profile : AppCompatActivity(),  ActivitiesRecycleAdapter.OnItemClickListener {
     private lateinit var auth: FirebaseAuth
     private lateinit var database: DatabaseReference
 
@@ -115,11 +121,26 @@ class Profile : AppCompatActivity() {
             startActivity(intent)
         }
 
+        val myAdapter = ActivitiesRecycleAdapter(userLogged.joinedList, this)
+        val mainHandler = Handler(Looper.getMainLooper())
+        val myRecycler: RecyclerView = findViewById(R.id.joinedRecycler)
+
+        myRecycler.adapter = myAdapter
+        myRecycler.layoutManager = LinearLayoutManager(this)
+        myRecycler.setHasFixedSize(true)
+
 
     }
 
-    override fun onBackPressed() {
+    override fun itemClick(position: Int){
+        val selectedActivity = userLogged.activityList[position]
+
+        joinedDetail = selectedActivity
+
+        val intent: Intent = Intent(this, joinedDetails::class.java)
+        startActivity(intent)
 
     }
+
 
 }

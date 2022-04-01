@@ -18,7 +18,7 @@ import java.util.*
 
 class DonationAmount : AppCompatActivity() {
 
-    private lateinit var  auth:FirebaseAuth
+    private lateinit var auth:FirebaseAuth
 
     private lateinit var database: DatabaseReference
     private lateinit var databaseU: DatabaseReference
@@ -28,6 +28,7 @@ class DonationAmount : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_donation_amount)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         database = FirebaseDatabase.getInstance("https://assignmentauth-1112b-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("DonationDB")
         databaseU = FirebaseDatabase.getInstance("https://assignmentauth-1112b-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("UsersDB")

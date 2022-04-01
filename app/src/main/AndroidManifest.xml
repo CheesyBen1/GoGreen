@@ -12,9 +12,25 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GoGreen">
         <activity
+            android:name=".joinedDetails"
+            android:exported="false"
+            android:parentActivityName=".Profile"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".JoinActivity"
+            android:exported="false"
+            android:parentActivityName=".Main"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ActivityCreate"
+            android:exported="false"
+            android:parentActivityName=".Main"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".DonationHistory"
             android:exported="false"
-            android:parentActivityName=".Profile"/>
+            android:parentActivityName=".Profile"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".DonationAmount"
             android:exported="false"

@@ -99,8 +99,9 @@
         android:layout_marginTop="16dp"
         android:background="#E4E4E4"
         android:paddingBottom="16sp"
-        app:layout_constraintTop_toBottomOf="@+id/textView20"
-        tools:layout_editor_absoluteX="0dp">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView20">
 
         <TextView
             android:id="@+id/textView22"
@@ -117,11 +118,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="60dp"
-            android:layout_marginTop="8dp"
             android:text="Total Donation:"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.107"
+            app:layout_constraintHorizontal_bias="0.098"
             app:layout_constraintStart_toEndOf="@+id/textView22"
             app:layout_constraintTop_toTopOf="@+id/textView22" />
 
@@ -155,6 +155,48 @@
             app:layout_constraintBottom_toBottomOf="@+id/textView22"
             app:layout_constraintStart_toEndOf="@+id/textView22" />
 
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/btnLogout"
+        app:layout_constraintTop_toBottomOf="@+id/donationConstraint"
+        tools:layout_editor_absoluteX="1dp">
+
+        <TextView
+            android:id="@+id/tvJoined"
+            android:layout_width="fill_parent"
+            android:layout_height="42dp"
+            android:background="#A4FFA8"
+            android:gravity="center"
+            android:text="Joined Activities"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/joinedRecycler"
+            android:layout_width="match_parent"
+            android:layout_height="0sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView34"
+            app:layout_constraintVertical_bias="1.0"
+            tools:layout_editor_absoluteX="0dp"
+            tools:listitem="@layout/activity_item" />
+
+        <TextView
+            android:id="@+id/textView34"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tap joined activities to see details."
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvJoined" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

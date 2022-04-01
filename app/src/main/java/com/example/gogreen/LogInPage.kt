@@ -8,15 +8,19 @@ import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import com.example.gogreen.models.Activitys
 import com.example.gogreen.models.userLogged
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.ktx.Firebase
 
 class LogInPage : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
+    private lateinit var database: DatabaseReference
 
     private var email: String = ""
     private var password: String = ""
@@ -66,6 +70,29 @@ class LogInPage : AppCompatActivity() {
         }
 
 
+
+        database = FirebaseDatabase.getInstance("https://assignmentauth-1112b-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("ActivitiesDB")
+        database.child("currentCount").get()
+            .addOnSuccessListener { donateCount ->
+                var donoCount: Int = 0
+                donoCount = donateCount.value.toString().toInt()
+                userLogged.activityList.clear()
+                for (i in donoCount downTo 1) {
+                    database.child(i.toString()).get()
+                        .addOnSuccessListener {
+                            var name = it.child("name").value.toString()
+                            var date = it.child("date").value.toString()
+                            var time = it.child("time").value.toString()
+                            var location = it.child("location").value.toString()
+                            var desc = it.child("description").value.toString()
+                            var host = it.child("host").value.toString()
+
+                            userLogged.activityList.add(Activitys(name,date,time,location,desc,host))
+
+                        }
+                }
+
+            }
 
 
 

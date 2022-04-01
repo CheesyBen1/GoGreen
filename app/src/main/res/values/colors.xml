@@ -7,4 +7,20 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="Pink">#FCBAB5</color>
+    <color name="LightBlue">#89D3F0</color>
+    <color name="LightGreen">#B7F19E</color>
+    <color name="LightPurple">#EA9FFF</color>
+    <color name="LightYellow">#FFF49C</color>
+    <color name="LightOrange">#E7C787</color>++++
+
+    <integer-array name="activitiesColors">
+        <item>@color/Pink</item>
+        <item>@color/LightBlue</item>
+        <item>@color/LightGreen</item>
+        <item>@color/LightPurple</item>
+        <item>@color/LightYellow</item>
+        <item>@color/LightOrange</item>
+
+    </integer-array>
 </resources>
