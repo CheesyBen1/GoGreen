@@ -15,4 +15,7 @@ object userLogged {
     var joinedDetail: Activitys? = null
 
 
+    var postList = mutableListOf<Posts>()
+
+
 }

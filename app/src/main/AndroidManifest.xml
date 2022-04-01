@@ -12,10 +12,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GoGreen">
         <activity
+            android:name=".add_post"
+            android:exported="false"
+            android:parentActivityName=".Main"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".joinedDetails"
             android:exported="false"
             android:parentActivityName=".Profile"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".JoinActivity"
             android:exported="false"

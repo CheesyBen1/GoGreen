@@ -50,7 +50,7 @@ class DonationHistory : AppCompatActivity(), DonationRecycleAdapter.OnItemClickL
     }
 
     override fun itemClick(position: Int){
-        val selectedStudent = donationList[position]
+
 
 
     }

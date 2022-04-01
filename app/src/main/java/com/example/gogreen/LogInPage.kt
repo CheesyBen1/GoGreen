@@ -9,6 +9,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import com.example.gogreen.models.Activitys
+import com.example.gogreen.models.Posts
 import com.example.gogreen.models.userLogged
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -71,28 +72,10 @@ class LogInPage : AppCompatActivity() {
 
 
 
-        database = FirebaseDatabase.getInstance("https://assignmentauth-1112b-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("ActivitiesDB")
-        database.child("currentCount").get()
-            .addOnSuccessListener { donateCount ->
-                var donoCount: Int = 0
-                donoCount = donateCount.value.toString().toInt()
-                userLogged.activityList.clear()
-                for (i in donoCount downTo 1) {
-                    database.child(i.toString()).get()
-                        .addOnSuccessListener {
-                            var name = it.child("name").value.toString()
-                            var date = it.child("date").value.toString()
-                            var time = it.child("time").value.toString()
-                            var location = it.child("location").value.toString()
-                            var desc = it.child("description").value.toString()
-                            var host = it.child("host").value.toString()
 
-                            userLogged.activityList.add(Activitys(name,date,time,location,desc,host))
+        updateActivities()
+        updatePosts()
 
-                        }
-                }
-
-            }
 
 
 
@@ -158,6 +141,54 @@ class LogInPage : AppCompatActivity() {
         savedInstanceState.putString("password", password)
     }
 
+
+    private fun updatePosts(){
+        database = FirebaseDatabase.getInstance("https://assignmentauth-1112b-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("PostsDB")
+        database.child("currentCount").get()
+            .addOnSuccessListener { donateCount ->
+                var donoCount: Int = 0
+                donoCount = donateCount.value.toString().toInt()
+                userLogged.postList.clear()
+                for (i in donoCount downTo 1) {
+                    database.child(i.toString()).get()
+                        .addOnSuccessListener {
+                            var name = it.child("name").value.toString()
+                            var time = it.child("time").value.toString()
+                            var caption = it.child("caption").value.toString()
+                            var likes = it.child("likes").value.toString().toInt()
+
+                            userLogged.postList.add(Posts(name,caption, time, likes))
+
+                        }
+                }
+
+            }
+    }
+
+    private fun updateActivities(){
+        database = FirebaseDatabase.getInstance("https://assignmentauth-1112b-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("ActivitiesDB")
+        database.child("currentCount").get()
+            .addOnSuccessListener { donateCount ->
+                var donoCount: Int = 0
+                donoCount = donateCount.value.toString().toInt()
+                userLogged.activityList.clear()
+                for (i in donoCount downTo 1) {
+                    database.child(i.toString()).get()
+                        .addOnSuccessListener {
+                            var nameA = it.child("name").value.toString()
+                            var date = it.child("date").value.toString()
+                            var time = it.child("time").value.toString()
+                            var location = it.child("location").value.toString()
+                            var desc = it.child("description").value.toString()
+                            var host = it.child("host").value.toString()
+
+                            userLogged.activityList.add(Activitys(nameA,date,time,location,desc,host))
+
+                        }
+                }
+
+            }
+    }
     override fun onBackPressed() {
 
     }

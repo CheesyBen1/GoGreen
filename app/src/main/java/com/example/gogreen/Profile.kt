@@ -13,10 +13,14 @@ import androidx.core.app.NavUtils
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.gogreen.fragments.adapters.ActivitiesRecycleAdapter
+import com.example.gogreen.models.Activitys
 import com.example.gogreen.models.DonoHistory
+import com.example.gogreen.models.Posts
 import com.example.gogreen.models.userLogged
+import com.example.gogreen.models.userLogged.activityList
 import com.example.gogreen.models.userLogged.donationList
 import com.example.gogreen.models.userLogged.joinedDetail
+import com.example.gogreen.models.userLogged.joinedList
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DatabaseReference
@@ -92,7 +96,7 @@ class Profile : AppCompatActivity(),  ActivitiesRecycleAdapter.OnItemClickListen
                 tvDonoTotal.text = "No history found!"
             }
 
-        val donation: View = findViewById(R.id.donationConstraint)
+
 
 
         database.child("userTable").child(auth.currentUser?.uid.toString())
@@ -115,11 +119,8 @@ class Profile : AppCompatActivity(),  ActivitiesRecycleAdapter.OnItemClickListen
 
             }
 
-        donation.setOnClickListener() {
+       updateJoined()
 
-            val intent: Intent = Intent(this, DonationHistory::class.java)
-            startActivity(intent)
-        }
 
         val myAdapter = ActivitiesRecycleAdapter(userLogged.joinedList, this)
         val mainHandler = Handler(Looper.getMainLooper())
@@ -130,16 +131,64 @@ class Profile : AppCompatActivity(),  ActivitiesRecycleAdapter.OnItemClickListen
         myRecycler.setHasFixedSize(true)
 
 
+
+        val donation: View = findViewById(R.id.donationConstraint)
+
+        donation.setOnClickListener() {
+
+            val intent: Intent = Intent(this, DonationHistory::class.java)
+            startActivity(intent)
+        }
+
+
+
+
     }
 
     override fun itemClick(position: Int){
-        val selectedActivity = userLogged.activityList[position]
+        val selectedActivity = userLogged.joinedList[position]
 
         joinedDetail = selectedActivity
 
         val intent: Intent = Intent(this, joinedDetails::class.java)
         startActivity(intent)
 
+    }
+
+
+
+    private fun updateJoined(){
+        database = FirebaseDatabase.getInstance("https://assignmentauth-1112b-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("UsersDB")
+
+
+        database.child("userTable").child(auth.currentUser?.uid.toString())
+            .child("joinedCount").get()
+            .addOnSuccessListener { donateCount ->
+                var donoCount: Int = 0
+                donoCount = donateCount.value.toString().toInt()
+                joinedList.clear()
+                for (i in donoCount downTo 1) {
+                    database.child("userTable").child(auth.currentUser?.uid.toString())
+                        .child("activityHistory").child(i.toString()).get()
+                        .addOnSuccessListener {
+                            var name = it.child("name").value.toString()
+                            var date = it.child("date").value.toString()
+                            var time = it.child("time").value.toString()
+                            var location = it.child("location").value.toString()
+                            var desc = it.child("description").value.toString()
+                            var host = it.child("host").value.toString()
+
+                            userLogged.joinedList.add(Activitys(name,date,time,location,desc,host))
+
+                        }
+                }
+
+            }
+    }
+
+    override fun onAttachedToWindow() {
+        super.onAttachedToWindow()
+        updateJoined()
     }
 
 

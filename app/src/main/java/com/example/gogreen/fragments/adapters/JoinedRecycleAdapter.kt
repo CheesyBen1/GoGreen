@@ -10,10 +10,13 @@ import com.example.gogreen.R
 import com.example.gogreen.fragments.activitiesFragment
 import com.example.gogreen.joinedDetails
 import com.example.gogreen.models.Activitys
+import com.example.gogreen.models.postModel
 import com.example.gogreen.models.userLogged
 import kotlin.random.Random
 
-class ActivitiesRecycleAdapter(private val activityList: List<Activitys> , private val listener:OnItemClickListener) : RecyclerView.Adapter<ActivitiesRecycleAdapter.MyViewHolder>(){
+class JoinedRecycleAdapter(private val activityList: List<Activitys> , private val listener:OnItemClickListener) : RecyclerView.Adapter<JoinedRecycleAdapter.MyViewHolder>(){
+
+
 
     inner class MyViewHolder(view: View): RecyclerView.ViewHolder(view), View.OnClickListener{
         var tvName: TextView = view.findViewById(R.id.tvActivityName)

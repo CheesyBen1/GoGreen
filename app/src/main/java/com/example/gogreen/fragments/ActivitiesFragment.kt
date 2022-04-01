@@ -1,5 +1,6 @@
 package com.example.gogreen.fragments
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
@@ -79,20 +80,8 @@ class activitiesFragment : Fragment() ,  ActivitiesRecycleAdapter.OnItemClickLis
         database = FirebaseDatabase.getInstance("https://assignmentauth-1112b-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("ActivitiesDB")
 
 
-        val myAdapter = ActivitiesRecycleAdapter(userLogged.activityList, this)
-
-        val mainHandler = Handler(Looper.getMainLooper())
-
-        val myRecycler: RecyclerView = requireView().findViewById(R.id.activitiesRecycler)
 
 
-
-
-
-
-        myRecycler.adapter = myAdapter
-        myRecycler.layoutManager = LinearLayoutManager(context)
-        myRecycler.setHasFixedSize(true)
 
 
 
@@ -119,7 +108,23 @@ class activitiesFragment : Fragment() ,  ActivitiesRecycleAdapter.OnItemClickLis
 
             }
 
+
+        val myAdapter = ActivitiesRecycleAdapter(userLogged.activityList, this)
+
+        val mainHandler = Handler(Looper.getMainLooper())
+
+        val myRecycler: RecyclerView = requireView().findViewById(R.id.activitiesRecycler)
+
+        myRecycler.adapter = myAdapter
+        myRecycler.layoutManager = LinearLayoutManager(context)
+        myRecycler.setHasFixedSize(true)
+
+        myRecycler.adapter!!.notifyDataSetChanged()
+
+
     }
+
+
 
     override fun onStart() {
         super.onStart()
