@@ -46,7 +46,7 @@ class Main : AppCompatActivity() {
      setContentView(binding.root)
 
 
-            if(auth.currentUser!= null)updateJoined()
+            if(auth.currentUser!= null)//updateJoined()
         updatePosts()
 
        // updateActivities()
